@@ -1272,6 +1272,13 @@ void LLVMGetMDNodeOperands(LLVMValueRef V, LLVMValueRef *Dest) {
     Dest[i] = getMDNodeOperandImpl(Context, N, i);
 }
 
+void LLVMReplaceMDNodeOperandWith(LLVMValueRef V, unsigned Index,
+                                  LLVMMetadataRef Replacement) {
+  auto *MD = cast<MetadataAsValue>(unwrap(V));
+  auto *N = cast<MDNode>(MD->getMetadata());
+  N->replaceOperandWith(Index, unwrap<Metadata>(Replacement));
+}
+
 unsigned LLVMGetNamedMetadataNumOperands(LLVMModuleRef M, const char *Name) {
   if (NamedMDNode *N = unwrap(M)->getNamedMetadata(Name)) {
     return N->getNumOperands();

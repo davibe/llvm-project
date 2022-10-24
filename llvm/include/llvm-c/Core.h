@@ -2921,6 +2921,14 @@ unsigned LLVMGetMDNodeNumOperands(LLVMValueRef V);
  */
 void LLVMGetMDNodeOperands(LLVMValueRef V, LLVMValueRef *Dest);
 
+/**
+ * Replace an operand at a specific index in a llvm::MDNode value.
+ *
+ * @see llvm::MDNode::replaceOperandWith()
+ */
+void LLVMReplaceMDNodeOperandWith(LLVMValueRef V, unsigned Index,
+                                  LLVMMetadataRef Replacement);
+
 /** Deprecated: Use LLVMMDStringInContext2 instead. */
 LLVMValueRef LLVMMDStringInContext(LLVMContextRef C, const char *Str,
                                    unsigned SLen);
