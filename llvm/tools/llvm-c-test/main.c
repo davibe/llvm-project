@@ -47,7 +47,8 @@ static void print_usage(void) {
   fprintf(stderr, "  * --replace-md-operand\n");
   fprintf(stderr, "    Run test for replacing MDNode operands\n");
   fprintf(stderr, "  * --is-a-value-as-metadata\n");
-  fprintf(stderr, "    Run test for checking if LLVMValueRef is a ValueAsMetadata\n");
+  fprintf(stderr,
+          "    Run test for checking if LLVMValueRef is a ValueAsMetadata\n");
   fprintf(
       stderr,
       "    Read lines of name, rpn from stdin - print generated module\n\n");
