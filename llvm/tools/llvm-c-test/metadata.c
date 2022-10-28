@@ -15,6 +15,7 @@
 #include "llvm-c-test.h"
 
 #include <assert.h>
+#include <stdio.h>
 #include <string.h>
 
 int llvm_add_named_metadata_operand(void) {
@@ -56,6 +57,21 @@ int llvm_replace_md_operand(void) {
   assert(!strncmp(LLVMGetMDString(LLVMGetOperand(md, 0), &tmp), "bar", 0));
 
   LLVMDisposeModule(m);
+
+  return 0;
+}
+
+int llvm_is_a_value_as_metadata(void) {
+  LLVMModuleRef m = LLVMModuleCreateWithName("Mod");
+  LLVMContextRef context = LLVMGetModuleContext(m);
+
+  LLVMValueRef values[] = { LLVMConstInt(LLVMInt32Type(), 0, 0) };
+  LLVMValueRef md = LLVMMDNode(values, 1);
+  assert(LLVMIsAValueAsMetadata(md) == md);
+
+  LLVMMetadataRef metas[] = { LLVMMDStringInContext2(context, "foo", 3) };
+  LLVMValueRef md2 = LLVMMetadataAsValue(context, LLVMMDNodeInContext2(context, metas, 1));
+  assert(LLVMIsAValueAsMetadata(md2) == NULL);
 
   return 0;
 }

@@ -1771,6 +1771,7 @@ LLVMBool LLVMIsPoison(LLVMValueRef Val);
 LLVM_FOR_EACH_VALUE_SUBCLASS(LLVM_DECLARE_VALUE_CAST)
 
 LLVMValueRef LLVMIsAMDNode(LLVMValueRef Val);
+LLVMValueRef LLVMIsAValueAsMetadata(LLVMValueRef Val);
 LLVMValueRef LLVMIsAMDString(LLVMValueRef Val);
 
 /** Deprecated: Use LLVMGetValueName2 instead. */
