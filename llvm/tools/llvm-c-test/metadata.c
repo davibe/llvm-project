@@ -15,7 +15,6 @@
 #include "llvm-c-test.h"
 
 #include <assert.h>
-#include <stdio.h>
 #include <string.h>
 
 int llvm_add_named_metadata_operand(void) {
