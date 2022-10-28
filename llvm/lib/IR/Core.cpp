@@ -1013,6 +1013,13 @@ LLVMValueRef LLVMIsAMDNode(LLVMValueRef Val) {
   return nullptr;
 }
 
+LLVMValueRef LLVMIsAValueAsMetadata(LLVMValueRef Val) {
+  if (auto *MD = dyn_cast_or_null<MetadataAsValue>(unwrap(Val)))
+    if (isa<ValueAsMetadata>(MD->getMetadata()))
+      return Val;
+  return nullptr;
+}
+
 LLVMValueRef LLVMIsAMDString(LLVMValueRef Val) {
   if (auto *MD = dyn_cast_or_null<MetadataAsValue>(unwrap(Val)))
     if (isa<MDString>(MD->getMetadata()))
